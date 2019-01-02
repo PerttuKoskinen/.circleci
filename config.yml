@@ -1,13 +1,10 @@
 version: 2.1
-jobs:
-  build:
-    docker:
-      - image: debian:stretch
-    steps:
-      - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
+
+orbs:
+    hello: circleci/hello-build@0.0.7 # uses the circleci/buildpack-deps Docker image
+
+workflows:
+    "Hello Workflow":
+        jobs:
+          - hello/hello-build
+
